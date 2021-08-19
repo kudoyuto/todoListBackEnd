@@ -50,6 +50,19 @@ public class ListToDoIntegrationTest {
     }
     @Test
     void should_add_todo_list_when_call_add_todo_item_api() throws Exception {
-  
+        //should
+        String todo = "" +
+                "" +
+                "{\n" +
+                "\n" +
+                "        \"text\": \"Skill to the moon\"\n" +
+                "}" +
+                "";
+        //when&then
+        mockMvc.perform(MockMvcRequestBuilders.post("/todos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(todo))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.text").value("Skill to the moon"));
     }
 }
