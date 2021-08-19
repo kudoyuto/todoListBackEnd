@@ -86,4 +86,14 @@ public class ListToDoIntegrationTest {
                 .andExpect(jsonPath("$.done").value(true));
 
     }
+    @Test
+    void should_delete_todo_list_when_call_delete_todo_item_api() throws Exception {
+        //given
+        todo savedTodo=todoRepository.save(new todo("Skill to the moon"));
+        //when&then
+        Integer savedId = savedTodo.getId();
+        mockMvc.perform(MockMvcRequestBuilders.delete("/todos/{id}",savedId))
+                .andExpect(status().isOk());
+
+    }
 }
