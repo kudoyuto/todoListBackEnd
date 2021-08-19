@@ -12,10 +12,9 @@ public class todo {
     private Integer id;
     private String text;
     private Boolean done = false;
-    public todo(String text, Boolean done){
+    public todo(String text) {
         this.text = text;
-        this.done = done;
-  }
+    }
     public todo() {
 
     }
