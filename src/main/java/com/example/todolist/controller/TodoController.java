@@ -2,6 +2,7 @@ package com.example.todolist.controller;
 
 import com.example.todolist.model.todo;
 import com.example.todolist.service.TodoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class TodoController {
     }
 
     @PostMapping
+    @ResponseStatus( HttpStatus.CREATED)
     public todo addTodoItem(@RequestBody todo addItem){
         return todoService.addTodoItem(addItem);
 

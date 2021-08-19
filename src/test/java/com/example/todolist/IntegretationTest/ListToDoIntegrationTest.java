@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -46,5 +47,9 @@ public class ListToDoIntegrationTest {
                 .andExpect(jsonPath("$[0].text").value("Do homework"))
                 .andExpect(jsonPath("$[1].text").value("Research about React, Redux"));
 
+    }
+    @Test
+    void should_add_todo_list_when_call_add_todo_item_api() throws Exception {
+  
     }
 }
