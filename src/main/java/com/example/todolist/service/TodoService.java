@@ -21,4 +21,19 @@ public class TodoService {
     public todo addTodoItem(todo addTodo) {
         return todoRepository.save(addTodo);
     }
+
+    public todo updateTodoItem(Integer id, todo updateItem) {
+       todo currentTodo = todoRepository.getById(id);
+       return todoRepository.save(updateTodoItemInfo(currentTodo,updateItem));
+    }
+
+    private todo updateTodoItemInfo(todo currentTodo, todo itemToBeUpdated) {
+        if (itemToBeUpdated.getText() != null) {
+            currentTodo.setText(itemToBeUpdated.getText());
+        }
+        if (itemToBeUpdated.getDone() != null) {
+            currentTodo.setDone(itemToBeUpdated.getDone());
+        }
+        return currentTodo;
+    }
 }
