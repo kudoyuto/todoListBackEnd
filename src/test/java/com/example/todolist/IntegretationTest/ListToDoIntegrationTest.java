@@ -65,4 +65,25 @@ public class ListToDoIntegrationTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.text").value("Skill to the moon"));
     }
+    @Test
+    void should_update_todo_list_when_call_update_todo_item_api() throws Exception {
+        //given
+        final todo todoItem = new todo("Skill to the moon");
+        final todo savedTodo = todoRepository.save(todoItem);
+        String todoListInfo = "{\n" +
+                "\n" +
+                "        \"text\": \"zoon to the moon\",\n" +
+                "        \"done\": true\n" +
+                "}";
+        //when
+        Integer savedId = savedTodo.getId();
+        //then
+        mockMvc.perform(MockMvcRequestBuilders.put("/todos/{id}",savedId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(todoListInfo))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.text").value("zoon to the moon"))
+                .andExpect(jsonPath("$.done").value(true));
+
+    }
 }
